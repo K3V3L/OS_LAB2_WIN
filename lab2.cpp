@@ -51,13 +51,18 @@ void printProcInfo(DWORD pid) {
 }
 int main()
 {
-	PrintMemoryInfo();
-	DWORD pids[1024], processes_bytes_size, num_processes;
-	unsigned int i;
-	EnumProcesses(pids, sizeof(pids), &processes_bytes_size);
-	num_processes = processes_bytes_size / (sizeof(DWORD));
-	printHeader();
-	for (unsigned int i = 0; i < num_processes; i++)
-		printProcInfo(pids[i]);
-	Sleep(5000);
+	int timer;
+	std::cin >> timer;
+	do
+	{
+		PrintMemoryInfo();
+		DWORD pids[1024], processes_bytes_size, num_processes;
+		unsigned int i;
+		EnumProcesses(pids, sizeof(pids), &processes_bytes_size);
+		num_processes = processes_bytes_size / (sizeof(DWORD));
+		printHeader();
+		for (unsigned int i = 0; i < num_processes; i++)
+			printProcInfo(pids[i]);
+		Sleep(timer * 1000);
+	} while (timer);
 }
